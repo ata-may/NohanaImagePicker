@@ -30,6 +30,8 @@ class DemoListViewController: UITableViewController, NohanaImagePickerController
         Cell(title: "No toolbar", selector: #selector(DemoListViewController.showNoToolbarPicker)),
         Cell(title: "Disable to pick assets", selector: #selector(DemoListViewController.showDisableToPickAssetsPicker)),
         Cell(title: "Custom UI", selector: #selector(DemoListViewController.showCustomUIPicker)),
+        Cell(title: "Disable images preview", selector:
+            #selector(DemoListViewController.showNoPreviewPicker))
     ]
 
     override func viewDidAppear(_ animated: Bool) {
@@ -120,6 +122,13 @@ class DemoListViewController: UITableViewController, NohanaImagePickerController
         picker.canPickAsset = { (asset: Asset) -> Bool in
             return asset.identifier % 2 == 0
         }
+        present(picker, animated: true, completion: nil)
+    }
+    
+    @objc func showNoPreviewPicker() {
+        let picker = NohanaImagePickerController()
+        picker.delegate = self
+        picker.canPreviewImages = false
         present(picker, animated: true, completion: nil)
     }
 

@@ -144,6 +144,10 @@ class MomentViewController: AssetListViewController, ActivityIndicatable {
     }
 
     // MARK: - Storyboard
+    
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        return nohanaImagePickerController?.canPreviewImages ?? true || identifier != "showPreviewSegue"
+    }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let selectedIndexPath = collectionView?.indexPathsForSelectedItems?.first else {
